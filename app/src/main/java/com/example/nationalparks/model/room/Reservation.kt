@@ -3,6 +3,7 @@ package com.example.nationalparks.model.room
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import java.io.Serializable
+import java.time.LocalDate
 import java.util.*
 
 @Entity(
@@ -13,6 +14,6 @@ data class Reservation(
     val reservationId: Long,
     val siteId: Long,
     val name: String,
-    val fromDate: Date,
-    val toDate: Date,
-    val createDate: Date) : Serializable
+    val fromDate: LocalDate,
+    val toDate: LocalDate,
+    val createDate: LocalDate) : Serializable
