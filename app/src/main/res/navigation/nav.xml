@@ -12,7 +12,7 @@
         tools:layout="@layout/fragment_park_list">
 
         <action
-            android:id="@+id/action_parks_list_to_park_detail"
+            android:id="@+id/action_park_list_to_park_detail"
             app:destination="@id/park_detail_fragment"/>
     </fragment>
 

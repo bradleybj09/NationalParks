@@ -1,17 +1,16 @@
 package com.example.nationalparks.viewmodel
 
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.nationalparks.model.ParkRepository
 import com.example.nationalparks.model.room.Park
 
 class ParkListViewModel : ViewModel() {
 
-    private val parks = MutableLiveData<List<Park>>()
+    var parks: List<Park> = ArrayList()
 
     init {
-        val respository = ParkRepository()
-        parks.value = respository.getParks()
+        val repository = ParkRepository()
+        parks = repository.getParks()
     }
 
 }

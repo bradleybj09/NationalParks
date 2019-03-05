@@ -9,7 +9,7 @@ import java.util.*
 @Entity(
     tableName = "park"
 )
-data class Park(
+data class Park (
     @PrimaryKey
     val parkId: Long,
     val name: String,

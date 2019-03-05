@@ -6,6 +6,8 @@ apply plugin: 'kotlin-android-extensions'
 
 apply plugin: 'kotlin-kapt'
 
+apply plugin: 'androidx.navigation.safeargs'
+
 android {
     compileSdkVersion 28
     defaultConfig {
@@ -34,6 +36,7 @@ dependencies {
     def androidArchVersion = '2.0.0-rc01'
     def roomVersion = "2.1.0-alpha04"
     def dagger2Version = "2.21"
+    def nav_version = "1.0.0-rc02"
 
 
     implementation fileTree(dir: 'libs', include: ['*.jar'])
@@ -48,6 +51,9 @@ dependencies {
 
     implementation "androidx.lifecycle:lifecycle-runtime:$androidArchVersion"
     implementation "androidx.lifecycle:lifecycle-extensions:$androidArchVersion"
+
+    implementation "android.arch.navigation:navigation-fragment-ktx:$nav_version"
+    implementation "android.arch.navigation:navigation-ui-ktx:$nav_version"
 
     implementation "androidx.room:room-runtime:$roomVersion"
     annotationProcessor "androidx.room:room-compiler:$roomVersion"
