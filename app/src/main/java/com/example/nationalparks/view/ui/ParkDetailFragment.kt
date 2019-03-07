@@ -1,4 +1,6 @@
 package com.example.nationalparks.view.ui
 
-class ParkDetailFragment {
+import androidx.fragment.app.Fragment
+
+class ParkDetailFragment : Fragment() {
 }

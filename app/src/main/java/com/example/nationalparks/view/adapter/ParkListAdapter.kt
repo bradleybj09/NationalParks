@@ -1,32 +1,36 @@
 package com.example.nationalparks.view.adapter
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.LifecycleOwner
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.example.nationalparks.databinding.ListItemParkBinding
 import com.example.nationalparks.model.room.Park
 import com.example.nationalparks.view.ui.ParkListFragmentDirections
 
-class ParkListAdapter(private var lifecycleOwner: LifecycleOwner) : RecyclerView.Adapter<ParkListAdapter.ParkViewHoldier>() {
+class ParkListAdapter(private val lifecycleOwner: LifecycleOwner) : RecyclerView.Adapter<ParkListAdapter.ParkViewHolder>() {
 
     private var parks: List<Park> = ArrayList()
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ParkViewHoldier {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ParkViewHolder {
+        Log.e("LOG","oncreateviewholder")
         val layoutInflater = LayoutInflater.from(parent.context)
         val binding = ListItemParkBinding.inflate(layoutInflater, parent, false)
         binding.lifecycleOwner = lifecycleOwner
-        return ParkViewHoldier(binding)
+        return ParkViewHolder(binding)
     }
 
-    override fun onBindViewHolder(holder: ParkViewHoldier, position: Int) {
+    override fun onBindViewHolder(holder: ParkViewHolder, position: Int) {
         holder.bind(parks[position], createOnClickListener(parks[position].parkId))
     }
 
     private fun createOnClickListener(parkId: Long): View.OnClickListener {
         return View.OnClickListener {
-            ParkListFragmentDirections.actionParkListToParkDetail(parkId)
+            val direction = ParkListFragmentDirections.actionParkListToParkDetail(parkId)
+            it.findNavController().navigate(direction)
         }
     }
 
@@ -39,13 +43,14 @@ class ParkListAdapter(private var lifecycleOwner: LifecycleOwner) : RecyclerView
         return parks.size
     }
 
-    class ParkViewHoldier(val binding: ListItemParkBinding) : RecyclerView.ViewHolder(binding.root) {
+    class ParkViewHolder(val binding: ListItemParkBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(park: Park, listener: View.OnClickListener) {
             binding.apply {
                 this.park = park
                 root.setOnClickListener(listener)
                 executePendingBindings()
             }
+            Log.e("LOG", binding.park!!.name)
         }
     }
 
