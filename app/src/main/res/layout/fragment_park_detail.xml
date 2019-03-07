@@ -4,7 +4,8 @@
         xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
-        <variable name="park" type="com.example.nationalparks.model.room.Park"/>
+        <variable name="park"
+                  type="com.example.nationalparks.model.room.Park"/>
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

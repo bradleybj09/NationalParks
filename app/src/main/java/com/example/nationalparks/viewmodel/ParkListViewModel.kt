@@ -10,7 +10,7 @@ class ParkListViewModel : ViewModel() {
 
     init {
         val repository = ParkRepository()
-        parks = repository.getParks()
+        parks = repository.parks
     }
 
 }
