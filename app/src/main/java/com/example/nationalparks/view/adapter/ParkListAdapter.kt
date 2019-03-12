@@ -16,7 +16,6 @@ class ParkListAdapter(private val lifecycleOwner: LifecycleOwner) : RecyclerView
     private var parks: List<Park> = ArrayList()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ParkViewHolder {
-        Log.e("LOG","oncreateviewholder")
         val layoutInflater = LayoutInflater.from(parent.context)
         val binding = ListItemParkBinding.inflate(layoutInflater, parent, false)
         binding.lifecycleOwner = lifecycleOwner
@@ -35,7 +34,7 @@ class ParkListAdapter(private val lifecycleOwner: LifecycleOwner) : RecyclerView
     }
 
     fun replaceData(list: List<Park>) {
-        this.parks = list
+        parks = list
         notifyDataSetChanged()
     }
 
@@ -50,7 +49,6 @@ class ParkListAdapter(private val lifecycleOwner: LifecycleOwner) : RecyclerView
                 root.setOnClickListener(listener)
                 executePendingBindings()
             }
-            Log.e("LOG", binding.park!!.name)
         }
     }
 
