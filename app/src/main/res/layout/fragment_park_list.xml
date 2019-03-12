@@ -16,12 +16,23 @@
             android:layout_height="match_parent"
             tools:context="com.example.nationalparks.view.ui.ParkListFragment">
 
+        <Toolbar
+                android:id="@+id/list_fragment_toolbar"
+                app:layout_constraintTop_toTopOf="parent"
+                android:layout_width="match_parent"
+                android:layout_height="?actionBarSize"
+                android:title="@string/app_name"
+                android:background="@color/colorPrimary"
+                android:elevation="2dp"/>
+
 
         <androidx.recyclerview.widget.RecyclerView
+                android:padding="4dp"
                 android:id="@+id/park_list_recyclerview"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:layout_constraintTop_toTopOf="parent"/>
+                android:layout_height="0dp"
+                app:layout_constraintVertical_weight="1"
+                app:layout_constraintTop_toBottomOf="@id/list_fragment_toolbar"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

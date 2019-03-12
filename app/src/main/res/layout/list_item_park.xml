@@ -8,16 +8,38 @@
                   type="com.example.nationalparks.model.room.Park"/>
     </data>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:elevation="4dp"
+            android:layout_marginBottom="4dp">
 
-        <TextView
-                android:id="@+id/park_list_item_textview"
+        <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:layout_constraintTop_toTopOf="parent"
-                android:text="@{park.name}"/>
+                android:layout_height="wrap_content">
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+            <ImageView
+                    android:id="@+id/park_list_item_imageview"
+                    app:layout_constraintTop_toTopOf="parent"
+                    android:layout_width="match_parent"
+                    android:layout_height="100dp"
+                    android:src="@drawable/acadia"
+                    android:foreground="@drawable/list_scrim"
+                    android:scaleType="centerCrop"/>
+
+            <TextView
+                    android:id="@+id/park_list_item_textview"
+                    android:layout_width="wrap_content"
+                    android:layout_height="100dp"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    android:text="@{park.name}"
+                    android:gravity="center"
+                    android:paddingEnd="36dp"
+                    android:textSize="24sp"
+                    android:textColor="@android:color/secondary_text_light"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.cardview.widget.CardView>
 </layout>
