@@ -14,7 +14,6 @@ import com.example.nationalparks.viewmodel.ParkListViewModel
 
 class ParkListFragment : Fragment() {
 
-
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val viewModel = ViewModelProviders.of(this).get(ParkListViewModel::class.java)
         val adapter = ParkListAdapter(viewLifecycleOwner)

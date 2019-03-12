@@ -50,5 +50,4 @@ class ParkListAdapter(private val lifecycleOwner: LifecycleOwner) : RecyclerView
             }
         }
     }
-
 }

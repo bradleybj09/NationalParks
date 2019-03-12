@@ -6,12 +6,13 @@
     <data>
         <variable name="park"
                   type="com.example.nationalparks.model.room.Park"/>
+        <variable name="viewModel"
+                  type="com.example.nationalparks.viewmodel.ParkDetailViewModel"/>
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
-
 
         <androidx.coordinatorlayout.widget.CoordinatorLayout
                 app:layout_constraintTop_toTopOf="parent"
@@ -154,16 +155,21 @@
 
         </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
-        <Button
+        <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                app:layout_constraintTop_toTopOf="@id/view_campgrounds_button"
+                android:background="@android:color/darker_gray"/>
+
+       <Button
                 style="?android:attr/buttonBarButtonStyle"
                 android:id="@+id/view_campgrounds_button"
                 android:layout_width="match_parent"
                 android:layout_height="?actionBarSize"
                 app:layout_constraintBottom_toBottomOf="parent"
-                android:text="View Campgrounds"
-                android:background="@color/colorPrimary"
+                android:text="Weather Forecast"
                 android:textColor="@android:color/secondary_text_light"
-                android:onClick="@{}"/>
+                android:onClick="@{() -> viewModel.showWeather()}"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

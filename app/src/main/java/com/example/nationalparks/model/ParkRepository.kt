@@ -1,7 +1,7 @@
 package com.example.nationalparks.model
 
-import android.icu.math.BigDecimal
 import com.example.nationalparks.model.room.Park
+import com.example.nationalparks.util.Weather
 import java.time.LocalDate
 
 class ParkRepository {
@@ -34,5 +34,16 @@ class ParkRepository {
             }
         }
         return Park(-1,"","", LocalDate.now(),0,0,"")
+    }
+
+    fun getWeatherByParkId(parkId: Long): List<Weather> {
+        //return weatherDao.getWeatherByParkId(parkId)
+        return listOf(
+            Weather(1,71,61,"Test","Test"),
+            Weather(2,72,62,"Test","Test"),
+            Weather(3,73,63,"Test","Test"),
+            Weather(4,74,64,"Test","Test"),
+            Weather(5,75,65,"Test","Test")
+        )
     }
 }
