@@ -1,9 +1,6 @@
 package com.example.nationalparks.model
 
-import android.content.res.Resources
 import android.icu.math.BigDecimal
-import com.example.nationalparks.R
-import com.example.nationalparks.model.room.Campground
 import com.example.nationalparks.model.room.Park
 import java.time.LocalDate
 
@@ -37,15 +34,5 @@ class ParkRepository {
             }
         }
         return Park(-1,"","", LocalDate.now(),0,0,"")
-    }
-
-    fun getCampgroundsByParkId(parkId: Long): List<Campground> {
-        //return campgroundDao.getCampgroundsByParkId(parkId)
-        return listOf(
-            Campground(1, 1, "Test Campground 1", 1, 12, BigDecimal("35.00")),
-            Campground(2, 1, "Test Campground 2", 5, 10, BigDecimal("35.00")),
-            Campground(3, 2, "Test Campground 3", 1, 12, BigDecimal("20.00")),
-            Campground(4, 2, "Test Campground 4", 6, 8, BigDecimal("20.00"))
-        )
     }
 }

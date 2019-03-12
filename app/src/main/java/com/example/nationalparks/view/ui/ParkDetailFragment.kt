@@ -15,7 +15,6 @@ import com.example.nationalparks.viewmodel.ParkDetailViewModelFactory
 class ParkDetailFragment : Fragment() {
 
     lateinit var viewModel: ParkDetailViewModel
-    var parkId = 0L
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val args: ParkDetailFragmentArgs by navArgs()
@@ -23,12 +22,6 @@ class ParkDetailFragment : Fragment() {
         viewModel = ViewModelProviders.of(this, ParkDetailViewModelFactory(parkId)).get(ParkDetailViewModel::class.java)
         val binding = FragmentParkDetailBinding.inflate(inflater, container, false)
         binding.park = viewModel.park
-        binding.viewCampgroundsButton.setOnClickListener { navigateToCampgroundList() }
         return binding.root
-    }
-
-    private fun navigateToCampgroundList() {
-        val direction = ParkDetailFragmentDirections.actionParkDetailToCampgroundList(parkId)
-        findNavController().navigate(direction)
     }
 }

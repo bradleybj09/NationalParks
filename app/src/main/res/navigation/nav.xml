@@ -25,32 +25,6 @@
             android:name="parkId"
             app:argType="long"/>
 
-        <action
-            android:id="@+id/action_park_detail_to_campground_list"
-            app:destination="@id/campground_list_fragment"/>
     </fragment>
 
-    <fragment
-        android:id="@+id/campground_list_fragment"
-        android:name="com.example.nationalparks.view.ui.CampgroundListFragment"
-        tools:layout="@layout/fragment_campground_list">
-
-        <argument
-            android:name="parkId"
-            app:argType="long"/>
-
-        <action
-            android:id="@+id/action_campground_list_to_reservation"
-            app:destination="@id/reservation_fragment"/>
-    </fragment>
-
-    <fragment
-        android:id="@+id/reservation_fragment"
-        android:name="com.example.nationalparks.view.ui.ReservationFragment"
-        tools:layout="@layout/fragment_reservation">
-
-        <argument
-            android:name="campgroundId"
-            app:argType="long"/>
-    </fragment>
 </navigation>
