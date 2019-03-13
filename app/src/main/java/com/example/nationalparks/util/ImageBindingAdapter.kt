@@ -18,10 +18,9 @@ fun loadImageUrl(imageView: ImageView, url: String?) {
 @BindingAdapter("app:drawableUri")
 fun loadImageDrawable(imageView: ImageView, drawableName: String?) {
     if (drawableName != "") {
-        var uri = Uri.parse("android.resource://com.example.nationalparks/drawable/$drawableName")
         val context = imageView.context
         val builder = Uri.Builder()
-        uri = builder.apply {
+        val uri = builder.apply {
             scheme(ContentResolver.SCHEME_ANDROID_RESOURCE)
             authority(context.resources.getResourcePackageName(R.drawable.rain))
             appendPath(context.resources.getResourceTypeName(R.drawable.rain))

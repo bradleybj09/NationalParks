@@ -8,6 +8,7 @@ data class Weather(val parkCode: String, val day: Int, val low: Int, val high: I
     var recommendation: String
     val imagePath: String
     val dayString: String
+    val forecastString: String
     init {
         recommendation = when (forecast) {
             "sunny" -> "Don't forget your sunblock."
@@ -36,10 +37,17 @@ data class Weather(val parkCode: String, val day: Int, val low: Int, val high: I
             }
             recommendation += "Be careful not to get frostbitten!"
         }
+
         imagePath = when (forecast) {
             "partly cloudy" -> "partlycloudy"
-            else -> "$forecast"
+            else -> forecast
         }
+
+        forecastString = when (forecast) {
+            "partly cloudy" -> "Partly\nCloudy"
+            else -> forecast.capitalize()
+        }
+
         val cal = GregorianCalendar()
         val dateFormat = SimpleDateFormat("EEEE", Locale.US)
         dayString = when (day) {
