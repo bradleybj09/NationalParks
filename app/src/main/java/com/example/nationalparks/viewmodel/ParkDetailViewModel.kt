@@ -7,22 +7,22 @@ import com.example.nationalparks.model.ParkRepository
 import com.example.nationalparks.model.room.Park
 import com.example.nationalparks.util.Event
 
-class ParkDetailViewModel(val parkId: Long) : ViewModel() {
+class ParkDetailViewModel(val parkCode: String) : ViewModel() {
 
     val park: Park
     val repository: ParkRepository
 
     init {
         repository = ParkRepository()
-        park = repository.getParkById(parkId)
+        park = repository.getParkByCode(parkCode)
     }
 
 
-    private val _showWeather = MutableLiveData<Event<Long>>()
-    val showWeather: LiveData<Event<Long>>
+    private val _showWeather = MutableLiveData<Event<String>>()
+    val showWeather: LiveData<Event<String>>
         get() = _showWeather
 
     fun showWeather() {
-        _showWeather.value = Event(parkId)
+        _showWeather.value = Event(parkCode)
     }
 }

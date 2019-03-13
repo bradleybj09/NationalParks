@@ -22,8 +22,8 @@
         tools:layout="@layout/fragment_park_detail">
 
         <argument
-            android:name="parkId"
-            app:argType="long"/>
+            android:name="parkCode"
+            app:argType="string"/>
 
     </fragment>
 

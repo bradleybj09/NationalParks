@@ -4,14 +4,13 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 import java.io.Serializable
 import java.time.LocalDate
-import java.util.*
 
 @Entity(
     tableName = "park"
 )
 data class Park (
     @PrimaryKey
-    val parkId: Long,
+    val parkCode: String,
     val name: String,
     val location: String,
     val establishDate: LocalDate,

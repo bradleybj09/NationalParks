@@ -16,9 +16,9 @@ import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 class WeatherBottomDialogFragment : BottomSheetDialogFragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        val parkId = arguments!!.getLong("parkId")
+        val parkCode = arguments!!.getString("parkCode")
         val adapter = WeatherAdapter(viewLifecycleOwner)
-        val viewModel = ViewModelProviders.of(this, WeatherViewModelFactory(parkId)).get(WeatherViewModel::class.java)
+        val viewModel = ViewModelProviders.of(this, WeatherViewModelFactory(parkCode)).get(WeatherViewModel::class.java)
         val binding = FragmentWeatherBottomSheetBinding.inflate(inflater,container,false)
         binding.viewModel = viewModel
         binding.weatherRecyclerview.layoutManager = LinearLayoutManager(context)

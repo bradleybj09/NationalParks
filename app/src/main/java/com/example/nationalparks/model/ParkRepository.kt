@@ -22,28 +22,28 @@ class ParkRepository {
     init {
         //parks = parkDao.getParks()
         parks = listOf(
-            Park(1, "Test Park 1", "Test Location 1", LocalDate.of(2001,1,1), 1000, 50, desc),
-            Park(2, "Test Park 2", "Test Location 2", LocalDate.of(2002,2,2), 2000, 100, desc)
+            Park("GNP", "Test Park 1", "Test Location 1", LocalDate.of(2001,1,1), 1000, 50, desc),
+            Park("GCNP", "Test Park 2", "Test Location 2", LocalDate.of(2002,2,2), 2000, 100, desc)
         )
     }
 
-    fun getParkById(parkId: Long): Park {
+    fun getParkByCode(parkCode: String): Park {
         for (park in parks) {
-            if (park.parkId == parkId) {
+            if (park.parkCode == parkCode) {
                 return park
             }
         }
-        return Park(-1,"","", LocalDate.now(),0,0,"")
+        return Park("","","", LocalDate.now(),0,0,"")
     }
 
-    fun getWeatherByParkId(parkId: Long): List<Weather> {
-        //return weatherDao.getWeatherByParkId(parkId)
+    fun getWeatherByParkCode(parkCode: String): List<Weather> {
+        //return weatherDao.getWeatherByParkCode(parkCode)
         return listOf(
-            Weather(1,71,61,"Test","Test"),
-            Weather(2,72,62,"Test","Test"),
-            Weather(3,73,63,"Test","Test"),
-            Weather(4,74,64,"Test","Test"),
-            Weather(5,75,65,"Test","Test")
+            Weather("GNP",1,27,40,"snow"),
+            Weather("GNP",2,31,43,"snow"),
+            Weather("GNP",3,28,40,"partly cloudy"),
+            Weather("GNP",4,24,34,"cloudy"),
+            Weather("GNP",5,25,32,"snow")
         )
     }
 }

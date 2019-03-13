@@ -20,8 +20,8 @@ class ParkDetailFragment : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val args: ParkDetailFragmentArgs by navArgs()
-        val parkId = args.parkId
-        viewModel = ViewModelProviders.of(this, ParkDetailViewModelFactory(parkId)).get(ParkDetailViewModel::class.java)
+        val parkCode = args.parkCode
+        viewModel = ViewModelProviders.of(this, ParkDetailViewModelFactory(parkCode)).get(ParkDetailViewModel::class.java)
         val binding = FragmentParkDetailBinding.inflate(inflater, container, false)
         binding.park = viewModel.park
         binding.viewModel = viewModel
@@ -32,7 +32,7 @@ class ParkDetailFragment : Fragment() {
                 if (weatherFragment.arguments == null) {
                     weatherFragment.arguments = Bundle()
                 }
-                weatherFragment.arguments!!.putLong("parkId", parkId)
+                weatherFragment.arguments!!.putString("parkCode", parkCode)
                 weatherFragment.show(fragmentManager, "Tag")
             }
         })

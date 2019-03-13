@@ -22,12 +22,12 @@ class ParkListAdapter(private val lifecycleOwner: LifecycleOwner) : RecyclerView
     }
 
     override fun onBindViewHolder(holder: ParkViewHolder, position: Int) {
-        holder.bind(parks[position], createOnClickListener(parks[position].parkId))
+        holder.bind(parks[position], createOnClickListener(parks[position].parkCode))
     }
 
-    private fun createOnClickListener(parkId: Long): View.OnClickListener {
+    private fun createOnClickListener(parkCode: String): View.OnClickListener {
         return View.OnClickListener {
-            val direction = ParkListFragmentDirections.actionParkListToParkDetail(parkId)
+            val direction = ParkListFragmentDirections.actionParkListToParkDetail(parkCode)
             it.findNavController().navigate(direction)
         }
     }
