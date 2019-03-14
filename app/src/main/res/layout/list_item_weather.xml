@@ -57,7 +57,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
-                android:text='@{"High: \n" + String.valueOf(weather.high)}'
+                android:text='@{"High: \n" + weather.highString}'
                 android:layout_weight="1"
                 style="@style/WeatherListItemStyle"/>
 
@@ -66,7 +66,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
-                android:text='@{"Low: \n" + String.valueOf(weather.low)}'
+                android:text='@{"Low: \n" + weather.lowString}'
                 android:layout_weight="1"
                 style="@style/WeatherListItemStyle"/>
 

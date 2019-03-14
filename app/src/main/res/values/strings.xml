@@ -12,4 +12,6 @@
     <string name="inspirationalQuoteSource">Quote by: </string>
     <string name="entryFee">Entry Fee: </string>
     <string name="numberOfAnimalSpecies">Number of animal species: </string>
+    <string name="fahrenheit">\u2109</string>
+    <string name="celsius">\u2103</string>
 </resources>

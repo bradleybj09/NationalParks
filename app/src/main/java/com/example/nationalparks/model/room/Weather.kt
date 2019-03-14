@@ -1,5 +1,7 @@
 package com.example.nationalparks.model.room
 
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.room.Entity
 import java.io.Serializable
 import java.text.SimpleDateFormat
@@ -19,7 +21,11 @@ data class Weather(
     val imagePath: String
     val dayString: String
     val forecastString: String
+    val lowString = MutableLiveData<String>()
+    val highString= MutableLiveData<String>()
     init {
+        lowString.value = low.toString()
+        highString.value = high.toString()
         recommendation = when (forecast) {
             "sunny" -> "Don't forget your sunblock."
             "partly cloudy" -> ""
@@ -69,4 +75,13 @@ data class Weather(
         }
     }
 
+    fun updateTemps(celsius: Boolean) {
+        if (celsius) {
+            lowString.value = ((low - 32) / 1.8).toString()
+            highString.value = ((high - 32) / 1.8).toString()
+        } else {
+            lowString.value = low.toString()
+            highString.value = high.toString()
+        }
+    }
 }
