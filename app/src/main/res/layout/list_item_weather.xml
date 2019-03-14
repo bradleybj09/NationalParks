@@ -6,7 +6,7 @@
     <data>
         <variable
                 name="weather"
-                type="com.example.nationalparks.util.Weather"/>
+                type="com.example.nationalparks.model.room.Weather"/>
         <import type="android.view.View"/>
     </data>
 

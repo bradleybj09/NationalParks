@@ -1,9 +1,19 @@
-package com.example.nationalparks.util
+package com.example.nationalparks.model.room
 
+import androidx.room.Entity
+import java.io.Serializable
 import java.text.SimpleDateFormat
 import java.util.*
 
-data class Weather(val parkCode: String, val day: Int, val low: Int, val high: Int, val forecast: String) {
+@Entity(
+    tableName = "weather"
+)
+data class Weather(
+    val parkCode: String,
+    val day: Int,
+    val low: Int,
+    val high: Int,
+    val forecast: String) : Serializable {
 
     var recommendation: String
     val imagePath: String

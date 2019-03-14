@@ -5,7 +5,7 @@ import android.view.ViewGroup
 import androidx.lifecycle.LifecycleOwner
 import androidx.recyclerview.widget.RecyclerView
 import com.example.nationalparks.databinding.ListItemWeatherBinding
-import com.example.nationalparks.util.Weather
+import com.example.nationalparks.model.room.Weather
 
 class WeatherAdapter(private val lifecycleOwner: LifecycleOwner) : RecyclerView.Adapter<WeatherAdapter.WeatherViewHolder>() {
 

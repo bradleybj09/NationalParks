@@ -9,13 +9,20 @@
         <item name="windowNoTitle">true</item>
         <item name="windowActionBar">false</item>
     </style>
-
-    <style name="DetailDataStyle">
+    <style name="DetailQuoteStyle">
         <item name="android:textSize">20sp</item>
         <item name="android:padding">2dp</item>
     </style>
-    <style name="DetailDescriptionStyle">
+    <style name="DetailFieldStyle">
         <item name="android:textSize">16sp</item>
+        <item name="android:padding">2dp</item>
+    </style>
+    <style name="DetailDataStyle">
+        <item name="android:textSize">18sp</item>
+        <item name="android:padding">2dp</item>
+    </style>
+    <style name="DetailDescriptionStyle">
+        <item name="android:textSize">18sp</item>
         <item name="android:padding">2dp</item>
     </style>
     <style name="WeatherListItemStyle" parent="AppTheme">

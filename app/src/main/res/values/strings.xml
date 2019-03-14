@@ -1,3 +1,15 @@
 <resources>
     <string name="app_name">National Parks</string>
+    <string name="state">State: </string>
+    <string name="acreage">Acreage: </string>
+    <string name="elevationInFeet">Elevation (ft.): </string>
+    <string name="milesOfTrail">Miles of trail: </string>
+    <string name="numberOfCampsites">Number of campsites: </string>
+    <string name="climate">Climate: </string>
+    <string name="yearFounded">Year founded: </string>
+    <string name="annualVisitorCount">Annual visitors: </string>
+    <string name="inspirationalQuote">Quote: </string>
+    <string name="inspirationalQuoteSource">Quote by: </string>
+    <string name="entryFee">Entry Fee: </string>
+    <string name="numberOfAnimalSpecies">Number of animal species: </string>
 </resources>
