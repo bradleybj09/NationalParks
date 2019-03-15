@@ -52,6 +52,7 @@ class AppModule(private val application: Application) {
     fun provideMySharedPreferences(sharedPreferences: SharedPreferences): MySharedPreferences = MySharedPreferences(sharedPreferences)
 
     @Provides
+    @Singleton
     fun provideParkListViewModelFactory(factory: ParkListViewModelFactory): ViewModelProvider.Factory = factory
 
     @Provides

@@ -2,12 +2,16 @@ package com.example.nationalparks.viewmodel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.example.nationalparks.model.room.Weather
+import javax.inject.Inject
 
-class WeatherViewModelFactory(val weather: List<Weather>, val celsius: Boolean) : ViewModelProvider.Factory{
+class WeatherViewModelFactory @Inject constructor(val weatherViewModel: WeatherViewModel) : ViewModelProvider.Factory{
 
     @Suppress("UNCHECKED_CAST")
     override fun <T : ViewModel?> create(modelClass: Class<T>): T {
-        return WeatherViewModel(weather, celsius) as T
+        if (modelClass.isAssignableFrom(WeatherViewModel::class.java)) {
+            return weatherViewModel as T
+        } else {
+            throw IllegalArgumentException("Unknown class name")
+        }
     }
 }

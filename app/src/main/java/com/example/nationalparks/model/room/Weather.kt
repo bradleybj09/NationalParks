@@ -6,6 +6,7 @@ import androidx.room.Entity
 import java.io.Serializable
 import java.text.SimpleDateFormat
 import java.util.*
+import kotlin.math.roundToInt
 
 @Entity(
     tableName = "weather"
@@ -77,8 +78,8 @@ data class Weather(
 
     fun updateTemps(celsius: Boolean) {
         if (celsius) {
-            lowString.value = ((low - 32) / 1.8).toString()
-            highString.value = ((high - 32) / 1.8).toString()
+            lowString.value = ((low - 32) / 1.8).roundToInt().toString()
+            highString.value = ((high - 32) / 1.8).roundToInt().toString()
         } else {
             lowString.value = low.toString()
             highString.value = high.toString()

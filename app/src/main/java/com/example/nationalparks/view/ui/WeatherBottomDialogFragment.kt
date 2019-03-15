@@ -14,18 +14,26 @@ import com.example.nationalparks.viewmodel.WeatherViewModelFactory
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
+import dagger.android.support.AndroidSupportInjection
+import javax.inject.Inject
 
 class WeatherBottomDialogFragment : BottomSheetDialogFragment() {
 
+    @Inject
+    lateinit var weatherViewModelFactory: WeatherViewModelFactory
+    lateinit var weatherViewModel: WeatherViewModel
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        AndroidSupportInjection.inject(this)
         val parkCode = arguments!!.getString("parkCode")
         val adapter = WeatherAdapter(viewLifecycleOwner)
-//        val viewModel = ViewModelProviders.of(this, WeatherViewModelFactory()).get(WeatherViewModel::class.java)
+        weatherViewModel = ViewModelProviders.of(this, weatherViewModelFactory).get(WeatherViewModel::class.java)
+        weatherViewModel.setup(parkCode)
         val binding = FragmentWeatherBottomSheetBinding.inflate(inflater,container,false)
-//        binding.viewModel = viewModel
-//        binding.weatherRecyclerview.layoutManager = LinearLayoutManager(context)
-//        binding.weatherRecyclerview.adapter = adapter
-//        adapter.replaceData(viewModel.weather)
+        binding.viewModel = weatherViewModel
+        binding.weatherRecyclerview.layoutManager = LinearLayoutManager(context)
+        binding.weatherRecyclerview.adapter = adapter
+        adapter.replaceData(weatherViewModel.weather)
         return binding.root
     }
 
