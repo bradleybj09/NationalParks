@@ -1,5 +1,6 @@
 package com.example.nationalparks.view.ui
 
+import android.content.Context
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -11,11 +12,18 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.nationalparks.databinding.FragmentParkListBinding
 import com.example.nationalparks.view.adapter.ParkListAdapter
 import com.example.nationalparks.viewmodel.ParkListViewModel
+import com.example.nationalparks.viewmodel.ParkListViewModelFactory
+import dagger.android.support.AndroidSupportInjection
+import javax.inject.Inject
 
 class ParkListFragment : Fragment() {
 
+    @Inject
+    lateinit var viewModelFactory: ParkListViewModelFactory
+    lateinit var viewModel: ParkListViewModel
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        val viewModel = ViewModelProviders.of(this).get(ParkListViewModel::class.java)
+        viewModel = ViewModelProviders.of(this, viewModelFactory).get(ParkListViewModel::class.java)
         val adapter = ParkListAdapter(viewLifecycleOwner)
         val binding = FragmentParkListBinding.inflate(inflater, container, false)
         binding.viewModel = viewModel
@@ -23,5 +31,10 @@ class ParkListFragment : Fragment() {
         binding.parkListRecyclerview.adapter = adapter
         adapter.replaceData(viewModel.parks)
         return binding.root
+    }
+
+    override fun onAttach(context: Context?) {
+        AndroidSupportInjection.inject(this)
+        super.onAttach(context)
     }
 }

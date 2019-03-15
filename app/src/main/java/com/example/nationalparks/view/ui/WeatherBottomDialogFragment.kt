@@ -1,15 +1,12 @@
 package com.example.nationalparks.view.ui
 
-import android.content.DialogInterface
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.view.ViewTreeObserver
 import android.widget.FrameLayout
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.nationalparks.R
 import com.example.nationalparks.databinding.FragmentWeatherBottomSheetBinding
 import com.example.nationalparks.view.adapter.WeatherAdapter
 import com.example.nationalparks.viewmodel.WeatherViewModel
@@ -23,12 +20,12 @@ class WeatherBottomDialogFragment : BottomSheetDialogFragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val parkCode = arguments!!.getString("parkCode")
         val adapter = WeatherAdapter(viewLifecycleOwner)
-        val viewModel = ViewModelProviders.of(this, WeatherViewModelFactory(parkCode)).get(WeatherViewModel::class.java)
+//        val viewModel = ViewModelProviders.of(this, WeatherViewModelFactory()).get(WeatherViewModel::class.java)
         val binding = FragmentWeatherBottomSheetBinding.inflate(inflater,container,false)
-        binding.viewModel = viewModel
-        binding.weatherRecyclerview.layoutManager = LinearLayoutManager(context)
-        binding.weatherRecyclerview.adapter = adapter
-        adapter.replaceData(viewModel.weather)
+//        binding.viewModel = viewModel
+//        binding.weatherRecyclerview.layoutManager = LinearLayoutManager(context)
+//        binding.weatherRecyclerview.adapter = adapter
+//        adapter.replaceData(viewModel.weather)
         return binding.root
     }
 

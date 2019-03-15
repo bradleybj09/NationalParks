@@ -2,10 +2,13 @@ package com.example.nationalparks.view.ui
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Toast
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import com.example.nationalparks.R
+import com.example.nationalparks.util.MySharedPreferences
 import dagger.android.AndroidInjection
+import javax.inject.Inject
 
 class MainActivity : AppCompatActivity() {
 

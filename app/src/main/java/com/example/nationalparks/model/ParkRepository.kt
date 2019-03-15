@@ -1,10 +1,12 @@
 package com.example.nationalparks.model
 
+import com.example.nationalparks.model.data.SharedPreferencesDao
 import com.example.nationalparks.model.room.Park
 import com.example.nationalparks.util.TestData
 import com.example.nationalparks.model.room.Weather
+import javax.inject.Inject
 
-class ParkRepository {
+class ParkRepository @Inject constructor(val sharedPreferencesDao: SharedPreferencesDao){
 
     val parks: List<Park>
 
@@ -31,5 +33,13 @@ class ParkRepository {
             }
         }
         return list
+    }
+
+    fun getTemperaturePreference(): Boolean {
+        return sharedPreferencesDao.getTemperaturePreference()
+    }
+
+    fun setTemperaturePreference(celcius: Boolean) {
+        sharedPreferencesDao.setTemperaturePreference(celcius)
     }
 }

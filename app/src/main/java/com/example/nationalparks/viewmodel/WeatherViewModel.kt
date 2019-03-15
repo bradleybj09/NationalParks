@@ -1,15 +1,18 @@
 package com.example.nationalparks.viewmodel
 
 import androidx.lifecycle.ViewModel
-import com.example.nationalparks.model.ParkRepository
 import com.example.nationalparks.model.room.Weather
 
-class WeatherViewModel(val parkCode: String) : ViewModel() {
+class WeatherViewModel (val weather: List<Weather>, var celsius: Boolean) : ViewModel() {
 
-    val weather: List<Weather>
 
     init {
-        val repository = ParkRepository()
-        weather = repository.getWeatherByParkCode(parkCode)
+        updateWeather()
+    }
+
+    fun updateWeather() {
+        for (each in weather) {
+            each.updateTemps(celsius)
+        }
     }
 }

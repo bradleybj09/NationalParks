@@ -6,17 +6,17 @@ import androidx.lifecycle.ViewModel
 import com.example.nationalparks.model.ParkRepository
 import com.example.nationalparks.model.room.Park
 import com.example.nationalparks.util.Event
+import javax.inject.Inject
 
-class ParkDetailViewModel(val parkCode: String) : ViewModel() {
+class ParkDetailViewModel @Inject constructor(val repository: ParkRepository) : ViewModel() {
 
-    val park: Park
-    val repository: ParkRepository
+    lateinit var parkCode: String
+    lateinit var park: Park
 
-    init {
-        repository = ParkRepository()
-        park = repository.getParkByCode(parkCode)
+    fun setup(parkCode: String) {
+        this.parkCode = parkCode
+        this.park = repository.getParkByCode(parkCode)
     }
-
 
     private val _showWeather = MutableLiveData<Event<String>>()
     val showWeather: LiveData<Event<String>>
