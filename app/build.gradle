@@ -36,9 +36,14 @@ dependencies {
     def androidArchVersion = '2.0.0-rc01'
     def roomVersion = "2.1.0-alpha04"
     def dagger2Version = "2.21"
-    def nav_version = "1.0.0-rc02"
+    def navVersion = "1.0.0-rc02"
+    def picassoVersion = "2.71828"
+    def moshiVersion = "1.8.0"
+    def retrofitVersion = "2.5.0"
+    def rxjavaVersion = "2.2.7"
+    def rxandroidVersion = "2.1.1"
 
-
+    //android
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation"org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     implementation 'androidx.appcompat:appcompat:1.0.2'
@@ -49,25 +54,46 @@ dependencies {
     implementation "androidx.legacy:legacy-support-v4:$supportVersion"
     implementation "androidx.constraintlayout:constraintlayout:$constraintLayoutVersion"
 
+    //android lifecycle
     implementation "androidx.lifecycle:lifecycle-runtime:$androidArchVersion"
     implementation "androidx.lifecycle:lifecycle-extensions:$androidArchVersion"
 
-    implementation "android.arch.navigation:navigation-fragment-ktx:$nav_version"
-    implementation "android.arch.navigation:navigation-ui-ktx:$nav_version"
+    //nav
+    implementation "android.arch.navigation:navigation-fragment-ktx:$navVersion"
+    implementation "android.arch.navigation:navigation-ui-ktx:$navVersion"
+    implementation "android.arch.navigation:navigation-fragment:$navVersion"
 
+
+    //room
     implementation "androidx.room:room-runtime:$roomVersion"
-    annotationProcessor "androidx.room:room-compiler:$roomVersion"
+    implementation "androidx.room:room-rxjava2:$roomVersion"
+    kapt "androidx.room:room-compiler:$roomVersion"
 
+    //dagger
     implementation "com.google.dagger:dagger:$dagger2Version"
     implementation "com.google.dagger:dagger-android:$dagger2Version"
     implementation "com.google.dagger:dagger-android-support:$dagger2Version"
     kapt "com.google.dagger:dagger-compiler:$dagger2Version"
     kapt "com.google.dagger:dagger-android-processor:$dagger2Version"
 
-    implementation 'com.squareup.picasso:picasso:2.71828'
+    //picasso
+    implementation "com.squareup.picasso:picasso:${picassoVersion}"
+
+    //moshi
+    implementation "com.squareup.moshi:moshi-kotlin:${moshiVersion}"
+    implementation "com.squareup.moshi:moshi-adapters:${moshiVersion}"
+
+    //retrofit
+    implementation "com.squareup.retrofit2:retrofit:${retrofitVersion}"
+    implementation "com.squareup.retrofit2:converter-moshi:${retrofitVersion}"
+    implementation "com.squareup.retrofit2:adapter-rxjava2:${retrofitVersion}"
+
+    //rxjava
+    implementation "io.reactivex.rxjava2:rxjava:${rxjavaVersion}"
+    implementation "io.reactivex.rxjava2:rxandroid:${rxandroidVersion}"
+
 
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test:runner:1.1.1'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.1'
-    implementation 'android.arch.navigation:navigation-fragment:1.0.0-rc02'
 }

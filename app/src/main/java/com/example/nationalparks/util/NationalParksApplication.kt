@@ -5,6 +5,7 @@ import android.app.Application
 import androidx.fragment.app.Fragment
 import com.example.nationalparks.dagger.AppModule
 import com.example.nationalparks.dagger.DaggerAppComponent
+import com.example.nationalparks.dagger.NetModule
 import dagger.android.AndroidInjector
 import dagger.android.DispatchingAndroidInjector
 import dagger.android.HasActivityInjector
@@ -24,6 +25,7 @@ class NationalParksApplication: Application(), HasActivityInjector, HasSupportFr
 
         DaggerAppComponent.builder()
             .appModule(AppModule(this))
+            .netModule(NetModule("http://10.0.2.2:8080/m3-java-capstone/api/"))
             .build().inject(this)
     }
 

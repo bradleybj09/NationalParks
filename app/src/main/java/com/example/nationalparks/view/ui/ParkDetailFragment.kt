@@ -9,6 +9,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.fragment.navArgs
 import com.example.nationalparks.databinding.FragmentParkDetailBinding
+import com.example.nationalparks.model.room.Park
 import com.example.nationalparks.viewmodel.ParkDetailViewModel
 import com.example.nationalparks.viewmodel.ParkDetailViewModelFactory
 import dagger.android.support.AndroidSupportInjection
@@ -27,9 +28,11 @@ class ParkDetailFragment : Fragment() {
         detailViewModel = ViewModelProviders.of(this, detailViewModelFactory).get(ParkDetailViewModel::class.java)
         detailViewModel.setup(parkCode)
         val binding = FragmentParkDetailBinding.inflate(inflater, container, false)
-        binding.park = detailViewModel.park
+        detailViewModel.loadPark()
+        detailViewModel.parkResult.observe(this, Observer<Park> {
+            binding.park = it
+        })
         binding.viewModel = detailViewModel
-
         detailViewModel.showWeather.observe(this, Observer {
             it.getContentIfNotHandled()?.let {
                 val weatherFragment = WeatherBottomDialogFragment()
