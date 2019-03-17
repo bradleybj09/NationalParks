@@ -9,9 +9,10 @@ import com.example.nationalparks.R
 import com.squareup.picasso.Picasso
 
 @BindingAdapter("app:imageUrl")
-fun loadImageUrl(imageView: ImageView, url: String?) {
-    if (url != "") {
-        Picasso.get().load(url).into(imageView)
+fun loadImageUrl(imageView: ImageView, parkCode: String?) {
+    if (parkCode != null && parkCode != "") {
+        Log.e("imagePath",Util.API_PATH + "img/parks/" + parkCode.toLowerCase() + ".jpg")
+        Picasso.get().load(Util.API_PATH + "img/parks/" + parkCode.toLowerCase() + ".jpg").into(imageView)
     }
 }
 

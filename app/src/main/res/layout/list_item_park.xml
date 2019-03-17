@@ -19,11 +19,12 @@
                 android:layout_height="wrap_content">
 
             <ImageView
+                    android:contentDescription="@{park.name}"
                     android:id="@+id/park_list_item_imageview"
                     app:layout_constraintTop_toTopOf="parent"
                     android:layout_width="match_parent"
                     android:layout_height="100dp"
-                    android:src="@drawable/acadia"
+                    app:imageUrl="@{park.parkCode}"
                     android:scaleType="centerCrop"/>
 
             <TextView

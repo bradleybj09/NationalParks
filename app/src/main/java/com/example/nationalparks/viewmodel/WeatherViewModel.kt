@@ -6,7 +6,7 @@ import androidx.lifecycle.ViewModel
 import com.example.nationalparks.model.ParkRepository
 import com.example.nationalparks.model.room.DataWeather
 import com.example.nationalparks.model.room.Weather
-import com.example.nationalparks.util.WeatherConverter
+import com.example.nationalparks.util.Util
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.observers.DisposableObserver
 import io.reactivex.schedulers.Schedulers
@@ -34,7 +34,7 @@ class WeatherViewModel @Inject constructor(val repository: ParkRepository) : Vie
             }
 
             override fun onNext(t: List<DataWeather>) {
-                weatherResult.postValue(WeatherConverter.convert(t))
+                weatherResult.postValue(Util.convert(t))
             }
 
             override fun onError(e: Throwable) {

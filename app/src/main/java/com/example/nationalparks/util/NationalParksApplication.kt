@@ -25,7 +25,7 @@ class NationalParksApplication: Application(), HasActivityInjector, HasSupportFr
 
         DaggerAppComponent.builder()
             .appModule(AppModule(this))
-            .netModule(NetModule("http://10.0.2.2:8080/m3-java-capstone/api/"))
+            .netModule(NetModule(Util.API_PATH + "api/"))
             .build().inject(this)
     }
 
