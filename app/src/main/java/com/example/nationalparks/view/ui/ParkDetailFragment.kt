@@ -29,7 +29,7 @@ class ParkDetailFragment : Fragment() {
         detailViewModel.setup(parkCode)
         val binding = FragmentParkDetailBinding.inflate(inflater, container, false)
         detailViewModel.loadPark()
-        detailViewModel.parkResult.observe(this, Observer<Park> {
+        detailViewModel.parkResult().observe(this, Observer<Park> {
             binding.park = it
         })
         binding.viewModel = detailViewModel

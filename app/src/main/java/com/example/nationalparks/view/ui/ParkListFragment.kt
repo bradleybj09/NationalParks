@@ -30,9 +30,6 @@ class ParkListFragment : Fragment() {
     lateinit var viewModelFactory: ParkListViewModelFactory
     lateinit var viewModel: ParkListViewModel
 
-    @Inject
-    lateinit var apiInterface: ApiInterface
-
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         viewModel = ViewModelProviders.of(this, viewModelFactory).get(ParkListViewModel::class.java)
         val adapter = ParkListAdapter(viewLifecycleOwner)
@@ -41,10 +38,7 @@ class ParkListFragment : Fragment() {
         binding.parkListRecyclerview.layoutManager = LinearLayoutManager(context)
         binding.parkListRecyclerview.adapter = adapter
         viewModel.loadParks()
-        viewModel.parksResult.observe(this, Observer<List<Park>> {
-            if (it.isEmpty()) {
-                adapter.replaceData(listOf(TestData.park1, TestData.park2))
-            }
+        viewModel.parksResult().observe(this, Observer<List<Park>> {
             adapter.replaceData(it)
         })
         return binding.root

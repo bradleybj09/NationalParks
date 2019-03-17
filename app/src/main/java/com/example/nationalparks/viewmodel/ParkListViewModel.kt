@@ -36,6 +36,7 @@ class ParkListViewModel @Inject constructor(private val repository: ParkReposito
 
             override fun onNext(t: List<Park>) {
                 parksResult.postValue(t)
+                Log.e("parklistviewmodel onnext",t.size.toString())
             }
 
             override fun onError(e: Throwable) {

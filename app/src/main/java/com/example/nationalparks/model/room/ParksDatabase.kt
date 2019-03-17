@@ -5,7 +5,7 @@ import androidx.room.RoomDatabase
 import com.example.nationalparks.model.data.ParkDao
 import com.example.nationalparks.model.data.WeatherDao
 
-@Database(entities = [Park::class, Weather::class], version = 3)
+@Database(entities = [Park::class, DataWeather::class], version = 5)
 abstract class ParksDatabase : RoomDatabase() {
     abstract fun parkDao(): ParkDao
     abstract fun weatherDao(): WeatherDao

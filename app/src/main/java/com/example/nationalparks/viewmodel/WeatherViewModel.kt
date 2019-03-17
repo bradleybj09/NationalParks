@@ -1,16 +1,15 @@
 package com.example.nationalparks.viewmodel
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.nationalparks.model.ParkRepository
-import com.example.nationalparks.model.room.Park
+import com.example.nationalparks.model.room.DataWeather
 import com.example.nationalparks.model.room.Weather
+import com.example.nationalparks.util.WeatherConverter
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.observers.DisposableObserver
 import io.reactivex.schedulers.Schedulers
-import java.util.concurrent.TimeUnit
 import javax.inject.Inject
 
 class WeatherViewModel @Inject constructor(val repository: ParkRepository) : ViewModel() {
@@ -18,7 +17,7 @@ class WeatherViewModel @Inject constructor(val repository: ParkRepository) : Vie
     var weatherResult: MutableLiveData<List<Weather>> = MutableLiveData()
     var weatherError: MutableLiveData<String> = MutableLiveData()
 
-    lateinit var disposableObserver: DisposableObserver<List<Weather>>
+    lateinit var disposableObserver: DisposableObserver<List<DataWeather>>
 
     fun weatherResult(): LiveData<List<Weather>> {
         return weatherResult
@@ -29,13 +28,13 @@ class WeatherViewModel @Inject constructor(val repository: ParkRepository) : Vie
     }
 
     fun loadWeather() {
-        disposableObserver = object : DisposableObserver<List<Weather>>() {
+        disposableObserver = object : DisposableObserver<List<DataWeather>>() {
             override fun onComplete() {
 
             }
 
-            override fun onNext(t: List<Weather>) {
-                weatherResult.postValue(t)
+            override fun onNext(t: List<DataWeather>) {
+                weatherResult.postValue(WeatherConverter.convert(t))
             }
 
             override fun onError(e: Throwable) {
@@ -63,8 +62,11 @@ class WeatherViewModel @Inject constructor(val repository: ParkRepository) : Vie
     }
 
     fun updateWeather() {
-        for (each in weatherResult.value!!) {
-            each.updateTemps(celsius)
+        if (weatherResult.value != null) {
+            for (each in weatherResult.value!!) {
+                each.updateTemps(celsius)
+            }
         }
+        repository.setTemperaturePreference(celsius)
     }
 }

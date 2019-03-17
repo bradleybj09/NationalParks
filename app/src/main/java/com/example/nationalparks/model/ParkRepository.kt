@@ -1,11 +1,10 @@
 package com.example.nationalparks.model
 
 import android.util.Log
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import com.example.nationalparks.model.data.ParkDao
 import com.example.nationalparks.model.data.SharedPreferencesDao
 import com.example.nationalparks.model.data.WeatherDao
+import com.example.nationalparks.model.room.DataWeather
 import com.example.nationalparks.model.room.Park
 import com.example.nationalparks.model.room.Weather
 import com.example.nationalparks.retrofit.ApiInterface
@@ -23,21 +22,26 @@ class ParkRepository @Inject constructor(
     ) {
 
     fun getParkList(): Observable<List<Park>> {
+        Log.e("repository","getParkList")
         val observableFromApi = getParksFromApi()
         val observableFromDatabase = getParksFromDatabase()
         return Observable.concatArrayEager(observableFromApi, observableFromDatabase)
     }
 
     private fun getParksFromApi(): Observable<List<Park>> {
+        Log.e("repository","getParksFromApi")
         return apiInterface.getParks()
             .doOnNext {
+                Log.e("repository getParksFromApi", it.size.toString())
                 for (item in it) {
+                    Log.e("repository getParksFromApiEach",item.name)
                     parkDao.insertPark(item)
                 }
             }
     }
 
     private fun getParksFromDatabase(): Observable<List<Park>> {
+        Log.e("repository","getParksFromDatabase")
         return parkDao.getParks()
     }
 
@@ -45,19 +49,19 @@ class ParkRepository @Inject constructor(
         return parkDao.getParkByCode(parkCode)
     }
 
-    fun getWeatherByParkCode(parkCode: String): Observable<List<Weather>> {
+    fun getWeatherByParkCode(parkCode: String): Observable<List<DataWeather>> {
         val weatherFromApi = getWeatherFromApi(parkCode)
         val weatherFromDatabase = getWeatherFromDatabase(parkCode)
         return Observable.concatArrayEager(weatherFromApi, weatherFromDatabase)
     }
 
-    private fun getWeatherFromApi(parkCode: String): Observable<List<Weather>> {
-        apiInterface.getWeatherDumb(parkCode).enqueue(object : Callback<List<Weather>> {
-            override fun onFailure(call: Call<List<Weather>>, t: Throwable) {
+    private fun getWeatherFromApi(parkCode: String): Observable<List<DataWeather>> {
+        apiInterface.getWeatherDumb(parkCode).enqueue(object : Callback<List<DataWeather>> {
+            override fun onFailure(call: Call<List<DataWeather>>, t: Throwable) {
                 Log.e("onfailure",call.request().toString())
             }
 
-            override fun onResponse(call: Call<List<Weather>>, response: Response<List<Weather>>) {
+            override fun onResponse(call: Call<List<DataWeather>>, response: Response<List<DataWeather>>) {
                 Log.e("onresponse body null",(response.body() == null).toString())
             }
         })
@@ -67,7 +71,7 @@ class ParkRepository @Inject constructor(
             }
     }
 
-    private fun getWeatherFromDatabase(parkCode: String): Observable<List<Weather>> {
+    private fun getWeatherFromDatabase(parkCode: String): Observable<List<DataWeather>> {
         return weatherDao.getWeatherByParkCode(parkCode)
     }
 

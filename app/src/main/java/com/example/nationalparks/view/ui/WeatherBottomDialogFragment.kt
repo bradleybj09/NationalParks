@@ -32,13 +32,13 @@ class WeatherBottomDialogFragment : BottomSheetDialogFragment() {
         Log.e("parkCode",parkCode)
         val adapter = WeatherAdapter(viewLifecycleOwner)
         weatherViewModel = ViewModelProviders.of(this, weatherViewModelFactory).get(WeatherViewModel::class.java)
-        weatherViewModel.setup(parkCode)
+        weatherViewModel.setup(parkCode!!)
         val binding = FragmentWeatherBottomSheetBinding.inflate(inflater,container,false)
         binding.viewModel = weatherViewModel
         binding.weatherRecyclerview.layoutManager = LinearLayoutManager(context)
         binding.weatherRecyclerview.adapter = adapter
         weatherViewModel.loadWeather()
-        weatherViewModel.weatherResult.observe(this, Observer<List<Weather>> {
+        weatherViewModel.weatherResult().observe(this, Observer<List<Weather>> {
             weatherViewModel.updateWeather()
             adapter.replaceData(it)
         })
@@ -52,7 +52,7 @@ class WeatherBottomDialogFragment : BottomSheetDialogFragment() {
             val bottomSheet = d.findViewById<FrameLayout>(com.google.android.material.R.id.design_bottom_sheet)
             val behavior = BottomSheetBehavior.from(bottomSheet).apply {
                 state = BottomSheetBehavior.STATE_EXPANDED
-                peekHeight = 0;
+                peekHeight = 0
             }
         }
     }
